@@ -13,12 +13,12 @@ class CreateMstUserTable extends Migration
      */
     public function up()
     {
+        // tabel mst_user
         Schema::create('mst_user', function (Blueprint $table) {
             $table->bigInteger('id');
             $table->string('username');
             $table->string('password');
             $table->bigInteger('id_user_role');
-            $table->primary('id');
         });
     }
 
