@@ -18,7 +18,6 @@ class CreateMstUserTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->bigInteger('id_user_role');
-            $table->primary('id');
         });
     }
 
