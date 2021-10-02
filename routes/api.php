@@ -8,6 +8,9 @@ use App\Http\Controllers\Building\GetBuildings;
 use App\Http\Controllers\Building\AddBuilding;
 use App\Http\Controllers\Building\GetBuildingById;
 use App\Http\Controllers\Building\AddBuildingType;
+use App\Http\Controllers\Building\GetBuildingTypeById;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,4 +28,5 @@ Route::prefix("building")->group(function() {
     Route::post("/",[AddBuilding::class,"createBuilding"]);
     Route::get("/{id}",[GetBuildingById::class,"getBuildingById"]);
     Route::post("/type",[AddBuildingType::class,"addBuildingType"]);
+    Route::get("/type/{id}",[GetBuildingTypeById::class,"getBuildingTypeById"]);
 });
