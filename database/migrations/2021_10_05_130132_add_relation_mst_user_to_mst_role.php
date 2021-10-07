@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMstUserTable extends Migration
+class AddRelationMstUserToMstRole extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateMstUserTable extends Migration
      */
     public function up()
     {
-        // tabel mst_user
-        Schema::create('mst_user', function (Blueprint $table) {
-            $table->bigInteger('id')->autoIncrement();
-            $table->string('username');
-            $table->string('password');
-            $table->bigInteger('id_user_role');
+        Schema::table('mst_user', function (Blueprint $table) {
+            $table->foreign('id_user_role')->references('id')->on('mst_user_role')->onUpdate('cascade');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateMstUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mst_user');
+        Schema::table('mst_user', function (Blueprint $table) {
+            $table->dropForeign('mst_user_id_user_role_foreign');
+        });
     }
 }
