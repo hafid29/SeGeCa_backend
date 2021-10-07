@@ -10,6 +10,8 @@ use App\Http\Controllers\Building\GetBuildingById;
 use App\Http\Controllers\Building\AddBuildingType;
 use App\Http\Controllers\Building\GetBuildingTypeById;
 
+// User Controller
+use App\Http\Controllers\User\RegisterUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +31,9 @@ Route::prefix("building")->group(function() {
     Route::get("/{id}",[GetBuildingById::class,"getBuildingById"]);
     Route::post("/type",[AddBuildingType::class,"addBuildingType"]);
     Route::get("/type/{id}",[GetBuildingTypeById::class,"getBuildingTypeById"]);
+});
+
+// Route for user
+Route::prefix("user")->group(function() {
+    Route::post("/",[RegisterUser::class,"registerUser"]);
 });
