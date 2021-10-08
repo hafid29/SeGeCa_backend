@@ -12,6 +12,7 @@ use App\Http\Controllers\Building\GetBuildingTypeById;
 
 // User Controller
 use App\Http\Controllers\User\RegisterUser;
+use App\Http\Controllers\User\LoginUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,5 @@ Route::prefix("building")->group(function() {
 // Route for user
 Route::prefix("user")->group(function() {
     Route::post("/",[RegisterUser::class,"registerUser"]);
+    Route::post("/login",[LoginUser::class,"loginUser"]);
 });
