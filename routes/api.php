@@ -38,4 +38,7 @@ Route::prefix("building")->group(function() {
 Route::prefix("user")->group(function() {
     Route::post("/",[RegisterUser::class,"registerUser"]);
     Route::post("/login",[LoginUser::class,"loginUser"]);
+    
 });
+
+// route for get user role

@@ -26,10 +26,13 @@ class  LoginUser extends Controller{
         // check username and get hashed password
         try {
             
+
             $users = DB::table('mst_user')
-            ->selectRaw('username,password,id')
-            ->where('username',$request->username)
+            ->join('mst_user_role','mst_user.id_user_role','=','mst_user_role.id')
+            // ->select('mst_user.*')
+            ->where("mst_user.username",$request->username)
             ->get();
+            
             if (count($users) != 0) {
                 
                 // dump hashed password from db
@@ -48,7 +51,8 @@ class  LoginUser extends Controller{
                 $datas = [];
                 array_push($datas,array(
                     'id' => $users[0]->id,
-                    'username' => $users[0]->username
+                    'username' => $users[0]->username,
+                    'role_name' => $users[0]->role_name
                 ));
                 return response()->json([
                     'message' => "login success",
