@@ -10,9 +10,11 @@ use App\Http\Controllers\Building\GetBuildingById;
 use App\Http\Controllers\Building\AddBuildingType;
 use App\Http\Controllers\Building\GetBuildingTypeById;
 
+
 // User Controller
 use App\Http\Controllers\User\RegisterUser;
 use App\Http\Controllers\User\LoginUser;
+use App\Http\Controllers\User\AddUserDetail;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +40,7 @@ Route::prefix("building")->group(function() {
 Route::prefix("user")->group(function() {
     Route::post("/",[RegisterUser::class,"registerUser"]);
     Route::post("/login",[LoginUser::class,"loginUser"]);
-    
+    Route::post("/detail",[AddUserDetail::class,"addUserDetail"]);
 });
 
 // route for get user role
