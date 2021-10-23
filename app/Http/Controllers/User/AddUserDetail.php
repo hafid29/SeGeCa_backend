@@ -20,13 +20,13 @@ class AddUserDetail extends Controller {
         
         $validator = Validator::make($request->all(),[
             'no_telp' => 'required',
-            'photo_profile' => 'required',
+            'PHOTO_PROFILE' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'user_id' => 'required',
         ],[
             'no_telp.required' => 'please fill no telpon',
-            'photo_profile.required' => 'please fill photo profile',
+            'PHOTO_PROFILE.required' => 'please fill photo profile',
             'first_name.required' => 'please fill first name',
             'last_name.required' => 'please fill last name',
             'user_id.required' => 'please fill user id'
@@ -42,10 +42,10 @@ class AddUserDetail extends Controller {
         }
         
         // file handler
-        if ($request->file('photo_profile')) {
-            $file = $request->file('photo_profile');
+        if ($request->file('PHOTO_PROFILE')) {
+            $file = $request->file('PHOTO_PROFILE');
             $client = new Client([
-                'base_uri' => 'http://127.0.0.1:4444',
+                'base_uri' => 'http://37.44.244.196:4444',
             ]);
             $response = $client->request('POST','/file/upload',[
                 'multipart' => [
@@ -67,7 +67,7 @@ class AddUserDetail extends Controller {
                  // handle insert data
                 $datas = MstUserData::create([
                     'no_telp' => $request->no_telp,
-                    'photo_profile' => $jsonDecode->object_name,
+                    'PHOTO_PROFILE' => $jsonDecode->object_name,
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
                     'user_id' => $request->user_id,
