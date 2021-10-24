@@ -4,7 +4,7 @@ services:
       container_name: "segeca-backend-container"
       image: ${NAMESPACE}/${SERVICE}:${TAG}
       build: .
-      command: 'php artisan serve --host=0.0.0.0'
+      command: 'ls'
       ports:
         - "8000:8000"
       volumes:
