@@ -39,6 +39,7 @@ pipeline{
                     }
                     steps {
                         // get credential file
+                        sh 'ls'
                         echo 'Build image'
                         sh 'chmod +x build.sh'
                         sh './build.sh default'
