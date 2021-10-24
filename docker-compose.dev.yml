@@ -4,10 +4,9 @@ services:
       container_name: "segeca-backend-container"
       image: ${NAMESPACE}/${SERVICE}:${TAG}
       build: .
-      command: go run main.go
       ports:
         - "8000:8000"
-       volumes:
+      volumes:
         - ./:/app
       environment:
         - DB_CONNECTION=mysql
@@ -17,10 +16,10 @@ services:
         - DB_USERNAME=segeca
         - DB_PASSWORD=ingatallah
       dns:
-          - 8.8.8.8
-          - 8.8.4.4
+        - 8.8.8.8
+        - 8.8.4.4
       networks:
-          - backend-networks
+        - backend-networks
 networks:
     backend-networks:
         driver: bridge
