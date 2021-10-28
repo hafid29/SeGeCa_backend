@@ -10,7 +10,9 @@ class GetBuildings extends Controller {
      // get list building
      public function index() {
         $response = [
-            'success' => true
+            'success' => true,
+            'code' => 200,
+            'data' => array()
         ];
         return response()->json($response,200);
     }

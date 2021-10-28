@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Building\GetBuildings;
 use App\Http\Controllers\Building\AddBuilding;
+use App\Http\Controllers\Building\AddBuildingDetail;
 use App\Http\Controllers\Building\GetBuildingById;
 use App\Http\Controllers\Building\AddBuildingType;
 use App\Http\Controllers\Building\GetBuildingTypeById;
@@ -33,6 +34,7 @@ Route::prefix("building")->group(function() {
     Route::post("/",[AddBuilding::class,"createBuilding"]);
     Route::get("/{id}",[GetBuildingById::class,"getBuildingById"]);
     Route::post("/type",[AddBuildingType::class,"addBuildingType"]);
+    Route::post("/detail",[AddBuildingDetail::class,"addBuildingDetail"]);
     Route::get("/type/{id}",[GetBuildingTypeById::class,"getBuildingTypeById"]);
 });
 
