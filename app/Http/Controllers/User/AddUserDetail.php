@@ -20,13 +20,13 @@ class AddUserDetail extends Controller {
         
         $validator = Validator::make($request->all(),[
             'no_telp' => 'required',
-            'PHOTO_PROFILE' => 'required',
+            'photo_profile' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'user_id' => 'required',
         ],[
             'no_telp.required' => 'please fill no telpon',
-            'PHOTO_PROFILE.required' => 'please fill photo profile',
+            'photo_profile.required' => 'please fill photo profile',
             'first_name.required' => 'please fill first name',
             'last_name.required' => 'please fill last name',
             'user_id.required' => 'please fill user id'
@@ -42,8 +42,8 @@ class AddUserDetail extends Controller {
         }
         
         // file handler
-        if ($request->file('PHOTO_PROFILE')) {
-            $file = $request->file('PHOTO_PROFILE');
+        if ($request->file('photo_profile')) {
+            $file = $request->file('photo_profile');
             $client = new Client([
                 'base_uri' => 'http://37.44.244.196:4444',
             ]);
@@ -51,7 +51,7 @@ class AddUserDetail extends Controller {
                 'multipart' => [
                     [
                         'name' => 'upload_type',
-                        'contents' => 'DOCUMENT'
+                        'contents' => 'PHOTO_PROFILE'
                     ],
                     [
                         'name' => 'file',
@@ -67,7 +67,7 @@ class AddUserDetail extends Controller {
                  // handle insert data
                 $datas = MstUserData::create([
                     'no_telp' => $request->no_telp,
-                    'PHOTO_PROFILE' => $jsonDecode->object_name,
+                    'photo_profile' => $jsonDecode->object_name,
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
                     'user_id' => $request->user_id,
