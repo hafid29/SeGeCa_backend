@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RemoveFieldDetailIdOnMstBuilding extends Migration
+class RelateProductIdToBuilding extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class RemoveFieldDetailIdOnMstBuilding extends Migration
      */
     public function up()
     {
-        Schema::table('mst_building', function (Blueprint $table) {
-            $table->dropColumn('detail_id');
+        Schema::table('mst_content', function (Blueprint $table) {
+            $table->foreign('product_id')->references('id')->on('mst_building');
         });
     }
 
@@ -25,8 +25,8 @@ class RemoveFieldDetailIdOnMstBuilding extends Migration
      */
     public function down()
     {
-        Schema::table('mst_building', function (Blueprint $table) {
-            $table->integer('detail_id');
+        Schema::table('mst_content', function (Blueprint $table) {
+            $table->dropForeign('mst_content_product_id_foreign');
         });
     }
 }

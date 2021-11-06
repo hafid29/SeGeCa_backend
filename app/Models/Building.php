@@ -18,7 +18,7 @@ class Building extends Model
     protected $primaryKey = 'id';
 
     // define field from table
-    protected $fillable = ['building_name','user_id','type_id','detail_id','is_active'];
+    protected $fillable = ['building_name','user_id','type_id','is_active'];
     
     // not active timestamp
     public $timestamps = false;
