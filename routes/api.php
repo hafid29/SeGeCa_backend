@@ -17,6 +17,9 @@ use App\Http\Controllers\User\RegisterUser;
 use App\Http\Controllers\User\LoginUser;
 use App\Http\Controllers\User\AddUserDetail;
 
+// content controller
+use App\Http\Controllers\Content\AddContent;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,6 +30,16 @@ use App\Http\Controllers\User\AddUserDetail;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// Route for post
+Route::prefix("content")->group(function() {
+    Route::post("/",[AddContent::class,"index"]);
+    // Route::get("/{id}",[GetContentById::class,"getContentByid"]);
+    // Route::get("/",[GetContents::class,"getContents"]);
+});
+
+// Route for order
+Route::prefix("order")->group(function() {});
 
 // Route for building
 Route::prefix("building")->group(function() {
