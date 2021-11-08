@@ -16,9 +16,11 @@ use App\Http\Controllers\Building\GetBuildingTypeById;
 use App\Http\Controllers\User\RegisterUser;
 use App\Http\Controllers\User\LoginUser;
 use App\Http\Controllers\User\AddUserDetail;
+use App\Http\Controllers\User\GetUserDetail;
 
 // content controller
 use App\Http\Controllers\Content\AddContent;
+use App\Http\Controllers\User\GetUserById;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,7 @@ Route::prefix("building")->group(function() {
 Route::prefix("user")->group(function() {
     Route::post("/",[RegisterUser::class,"registerUser"]);
     Route::post("/login",[LoginUser::class,"loginUser"]);
+    Route::get("/data",[GetUserById::class,"getUserById"]);
     Route::post("/detail",[AddUserDetail::class,"addUserDetail"]);
 });
 
