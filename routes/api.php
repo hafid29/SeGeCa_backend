@@ -11,6 +11,20 @@ use App\Http\Controllers\Building\GetBuildingById;
 use App\Http\Controllers\Building\AddBuildingType;
 use App\Http\Controllers\Building\GetBuildingTypeById;
 
+// Catering Controller
+use App\Http\Controllers\Building\GetCatering;
+use App\Http\Controllers\Building\AddCatering;
+use App\Http\Controllers\Building\AddCateringDetail;
+use App\Http\Controllers\Building\GetCateringById;
+use App\Http\Controllers\Building\AddCateringType;
+use App\Http\Controllers\Building\GetCateringTypeById;
+
+// User Controller
+use App\Http\Controllers\Order\GetOrder;
+use App\Http\Controllers\Order\AddOrder;
+use App\Http\Controllers\Order\GetOrderById;
+use App\Http\Controllers\Order\AddOrderStatus;
+use App\Http\Controllers\Order\GetOrderStatusById;
 
 // User Controller
 use App\Http\Controllers\User\RegisterUser;
@@ -53,11 +67,30 @@ Route::prefix("building")->group(function() {
     Route::get("/type/{id}",[GetBuildingTypeById::class,"getBuildingTypeById"]);
 });
 
+// Route for Catering
+Route::prefix("catering")->group(function() {
+    Route::get("/",[GetCatering::class,"index"]);
+    Route::post("/",[AddCatering::class,"createCatering"]);
+    Route::get("/{id}",[GetCateringById::class,"getCateringById"]);
+    Route::post("/type",[AddCateringType::class,"addCateringType"]);
+    Route::post("/detail",[AddCateringDetail::class,"addCateringDetail"]);
+    Route::get("/type/{id}",[GetCateringTypeById::class,"getCateringTypeById"]);
+});
+
+// Route for Order
+Route::prefix("order")->group(function() {
+    Route::get("/",[GetOrder::class,"index"]);
+    Route::post("/",[AddOrder::class,"createOrder"]);
+    Route::get("/{id}",[GetOrderById::class,"getOrderById"]);
+    Route::post("/status",[AddOrderStatus::class,"addOrderStatus"]);
+    Route::get("/status/{id}",[GetOrderStatusById::class,"getOrderStatusById"]);
+});
+
 // Route for user
 Route::prefix("user")->group(function() {
     Route::post("/",[RegisterUser::class,"registerUser"]);
     Route::post("/login",[LoginUser::class,"loginUser"]);
-    Route::get("/data",[GetUserById::class,"getUserById"]);
+    Route::get("/{id}",[GetUserById::class,"getUserById"]);
     Route::post("/detail",[AddUserDetail::class,"addUserDetail"]);
 });
 
