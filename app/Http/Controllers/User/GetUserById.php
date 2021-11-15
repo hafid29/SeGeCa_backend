@@ -2,31 +2,19 @@
 
 namespace App\Http\Controllers\User;
 
+// import controller
 use App\Http\Controllers\Controller;
 
-use Illuminate\Database\Eloquent\Model;
+// import model
 use App\Models\MstUser;
-use App\Models\MstUserData;
-
-use Illuminate\Support\Facades\Validator;
-// Import http
-use Illuminate\Http\Request;
-// import
-use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7;
-use Illuminate\Http\Client\Response;
-use Exception;
 
 class GetUserById extends Controller
 {
-    function GetUserById(Request $request)
+    function getUserById($id)
     {
         // find data by id
-        $id = $request->input('id');
-
         $user =  MstUser::find($id);
-        // validate data from database
+        // validate data from tabel mst_user
         if (!$user) {
             return response()->json([
                 'message' => "user type with id " . $id . " not found",
@@ -34,18 +22,14 @@ class GetUserById extends Controller
                 'data' => array()
             ], 404);
         }
-        $arrData = [];
-        array_push($arrData,array(
-            'id' => $id['id'],
-            'username' => $id['username'],
-            'password' => $id['password']
-        ));
+        // variable to find by id
+        $arrData = $user;
 
-        // validate requst param
+        // condition success
         return response()->json([
             'message' => "Success get data for user",
             'code' => 200,
-            'data' => array()
+            'data' => $arrData
         ], 200);
     }
 }
