@@ -30,7 +30,7 @@ use App\Http\Controllers\Order\GetOrderStatusById;
 use App\Http\Controllers\User\RegisterUser;
 use App\Http\Controllers\User\LoginUser;
 use App\Http\Controllers\User\AddUserDetail;
-use App\Http\Controllers\User\GetUserDetail;
+use App\Http\Controllers\User\GetUser;
 
 // content controller
 use App\Http\Controllers\Content\AddContent;
@@ -90,6 +90,7 @@ Route::prefix("order")->group(function() {
 Route::prefix("user")->group(function() {
     Route::post("/",[RegisterUser::class,"registerUser"]);
     Route::post("/login",[LoginUser::class,"loginUser"]);
+    Route::get("/all",[GetUser::class,"getUser"]);
     Route::get("/{id}",[GetUserById::class,"getUserById"]);
     Route::post("/detail",[AddUserDetail::class,"addUserDetail"]);
 });
