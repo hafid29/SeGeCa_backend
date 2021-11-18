@@ -17,7 +17,7 @@ class GetUserById extends Controller
         // validate data from tabel mst_user
         if (!$user) {
             return response()->json([
-                'message' => "user type with id " . $id . " not found",
+                'message' => "user with id " . $id . " not found",
                 'code' => 404,
                 'data' => array()
             ], 404);
