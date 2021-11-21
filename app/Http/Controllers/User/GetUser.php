@@ -24,13 +24,12 @@ class GetUser extends Controller
             ], 404);
         }
         // variable to find by id
-        $arrData = $userAll;
 
         // condition success
         return response()->json([
             'message' => "Success get all data for user",
             'code' => 200,
-            'data' => $arrData
+            'data' => $userAll
         ], 200);
     }
 }
