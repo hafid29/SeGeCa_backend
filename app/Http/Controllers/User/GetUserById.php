@@ -7,6 +7,13 @@ use App\Http\Controllers\Controller;
 
 // import model
 use App\Models\MstUser;
+
+// http client
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7;
+use Illuminate\Http\Client\Response;
+
 Use Exception;
 
 class GetUserById extends Controller
@@ -43,6 +50,17 @@ class GetUserById extends Controller
                 ], 404);
             }
             
+            // send request to file-service
+            $client = new Client([
+                'base_uri' => 'http://37.44.244.196:4444/'
+            ]);
+            $reqPath = "file/".$user[0]->photo_profile;
+            $resp = $client->request("GET",$reqPath);
+
+            // get json response from file service
+            $encodeToString = (string) $resp->getBody();
+            $jsonDecode = json_decode($encodeToString);
+
             // dump data to empty array 
             $arrData = [];
             array_push($arrData,array(
@@ -51,6 +69,7 @@ class GetUserById extends Controller
                 'last_name' => $user[0]->last_name,
                 'phone_number' => $user[0]->no_telp,
                 'photo_profile' => $user[0]->photo_profile,
+                'image_url' => $jsonDecode->meta_data->media_link,
             ));
             
             // condition success
