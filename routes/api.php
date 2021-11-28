@@ -34,6 +34,7 @@ use App\Http\Controllers\User\GetUser;
 
 // content controller
 use App\Http\Controllers\Content\AddContent;
+use App\Http\Controllers\User\DelUserById;
 use App\Http\Controllers\User\GetUserById;
 
 /*
@@ -93,6 +94,7 @@ Route::prefix("user")->group(function() {
     Route::get("/all",[GetUser::class,"getUser"]);
     Route::get("/{id}",[GetUserById::class,"getUserById"]); 
     Route::post("/detail",[AddUserDetail::class,"addUserDetail"]);
+    Route::delete("/{id}",[DelUserById::class,"delUserById"]);
 });
 
 // route for get user role
