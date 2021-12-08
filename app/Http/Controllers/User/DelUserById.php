@@ -49,21 +49,28 @@ class DelUserById extends Controller
                     'data' => array()
                 ], 404);
             }
-            // condition success
-            return response()->json([
-                'message' => "Delete success id" .$user_id ."user",
-                'code' => 200,
-                'data' => $user,
-            ], 200);
-            
+        
+            // send request to file-service
+//        $client = new Client([
+        //'base_uri' => 'http://37.44.244.196:4444/'
+       // ]);
+      //  $reqPath = "file/".$user[0]->photo_profile;
+    //    $resp = $client->request("DELETE",$reqPath);
+
+        // get json response from file service
+  //      $encodeToString = (string) $resp->getBody();
+//        $jsonDecode = json_decode($encodeToString);
+
+        // delete data
+        $affacted = MstUserData::where('user_id',$user_id)->delete();
+        $isAffacted = MstUser::where('id',$user_id)->delete();
+        return response()->json([
+            'message' => "Success Delete user data",
+            'code'=> 201,
+            'data'=> array()
+        ],201);
         } catch (Exception $e) {
-            if ($e->getCode() != 0) {
-                return response()->json([
-                    'message' => "Internal Server error",
-                    'code' => 500,
-                    'data' => $e->getCode(),
-                ], 500);
-            }
+
             return response()->json([
                 'message' => "Data Not Found",
                 'code' => 404,

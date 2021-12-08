@@ -14,7 +14,7 @@ class AddForeignKeyMstBuildingMstBuildingType extends Migration
     public function up()
     {
         Schema::table('mst_building', function (Blueprint $table) {
-            $table->foreign('type_id')->references('id')->on('mst_building_type')->onUpdate('cascade');
+            $table->foreign('type_id')->references('id')->on('mst_building_type');
         });
     }
 
